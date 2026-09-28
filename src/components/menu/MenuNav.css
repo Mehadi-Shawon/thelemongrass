@@ -1,0 +1,160 @@
+.menu-nav {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 20;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 6px 16px rgba(29, 29, 27, 0.05);
+}
+
+.menu-nav__inner {
+  position: relative;
+}
+
+.menu-nav__list {
+  --hide: 0px; /* fully hidden zone at a faded edge (room for an arrow button) */
+  --fade-end: 48px; /* where the fade reaches full strength */
+  position: relative;
+  display: flex;
+  gap: 0.4rem;
+  height: var(--menu-nav-height);
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.menu-nav__list::-webkit-scrollbar {
+  display: none;
+}
+
+/* Fade whichever edge has more chips beyond it, so the bar reads as scrollable. */
+.menu-nav__list.has-right {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - var(--fade-end)), transparent calc(100% - var(--hide)));
+  mask-image: linear-gradient(to right, #000 calc(100% - var(--fade-end)), transparent calc(100% - var(--hide)));
+}
+
+.menu-nav__list.has-left {
+  -webkit-mask-image: linear-gradient(to right, transparent var(--hide), #000 var(--fade-end));
+  mask-image: linear-gradient(to right, transparent var(--hide), #000 var(--fade-end));
+}
+
+.menu-nav__list.has-left.has-right {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent var(--hide),
+    #000 var(--fade-end),
+    #000 calc(100% - var(--fade-end)),
+    transparent calc(100% - var(--hide))
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent var(--hide),
+    #000 var(--fade-end),
+    #000 calc(100% - var(--fade-end)),
+    transparent calc(100% - var(--hide))
+  );
+}
+
+.menu-nav__list li {
+  scroll-snap-align: start;
+}
+
+.menu-nav__link {
+  display: block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    opacity var(--transition);
+}
+
+.menu-nav__link:hover {
+  background: var(--color-bg-alt);
+}
+
+.menu-nav__link.is-active {
+  background: var(--color-primary);
+  color: var(--color-dark);
+}
+
+.menu-nav__link.is-empty {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.menu-nav__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-dark);
+  color: var(--color-text-inverse);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background-color var(--transition);
+}
+
+.menu-nav__arrow:hover {
+  background: var(--color-primary);
+  color: var(--color-dark);
+}
+
+.menu-nav__arrow--left {
+  left: 1.25rem;
+}
+
+.menu-nav__arrow--left svg {
+  transform: rotate(180deg);
+}
+
+.menu-nav__arrow--right {
+  right: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  /* Text is hidden under the arrow (34px + halo) and fades in just past it. */
+  .menu-nav__list {
+    --hide: 46px;
+    --fade-end: 124px;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: 124px;
+  }
+
+  /* A cream halo keeps faded chip text from touching the arrow. */
+  .menu-nav__arrow {
+    box-shadow: 0 0 0 6px var(--color-bg);
+  }
+}
+
+/* Phones: swipe instead of arrows, and let the chips run to the screen edge. */
+@media (max-width: 767px) {
+  .menu-nav__arrow {
+    display: none;
+  }
+
+  .menu-nav__list {
+    --fade-end: 32px;
+    margin: 0 -1.25rem;
+    padding: 0 1.25rem;
+    scroll-padding-inline: 1.25rem;
+  }
+
+  /* Keeps the right padding when scrolled to the end. */
+  .menu-nav__list::after {
+    content: '';
+    flex: 0 0 1px;
+  }
+}

@@ -1,0 +1,102 @@
+.footer {
+  padding-top: 4.5rem;
+  background: var(--color-dark);
+  color: rgba(247, 244, 234, 0.72);
+  font-size: 0.95rem;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 0.8fr 1.4fr 1.4fr;
+  gap: 3rem;
+}
+
+.footer__brand .logo {
+  color: var(--color-text-inverse);
+}
+
+.footer__brand p {
+  max-width: 22rem;
+  margin-top: 1.25rem;
+}
+
+.footer__heading {
+  margin-bottom: 1.1rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.footer__list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__list a {
+  transition: color var(--transition);
+}
+
+.footer__list a:hover,
+.footer__social a:hover {
+  color: var(--color-primary);
+}
+
+.footer__hours li {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__hours span:first-child {
+  color: var(--color-text-inverse);
+}
+
+.footer__social {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Copyright on the left, designer credit on the right; they stack on phones. */
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-top: 1px solid rgba(247, 244, 234, 0.12);
+  font-size: 0.85rem;
+}
+
+.footer__bottom p {
+  margin: 0;
+}
+
+.footer__credit a {
+  font-weight: 700;
+  color: var(--color-text-inverse);
+  transition: color var(--transition);
+}
+
+.footer__credit a:hover {
+  color: var(--color-primary);
+}
+
+@media (max-width: 960px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+}

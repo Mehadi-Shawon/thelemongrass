@@ -1,0 +1,31 @@
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--position, 50% 50%);
+}
+
+@media (min-width: 721px) {
+  .photo {
+    object-position: var(--position-wide, var(--position, 50% 50%));
+  }
+}
+
+.photo--placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(179, 86, 0, 0.75);
+  background:
+    radial-gradient(circle at 25% 20%, rgba(246, 224, 60, 0.45), transparent 55%),
+    repeating-linear-gradient(135deg, rgba(243, 146, 0, 0.07) 0 12px, transparent 12px 24px),
+    linear-gradient(160deg, #fdeccd, #f8d9a4);
+}

@@ -1,0 +1,115 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  height: var(--header-height);
+  background: var(--color-dark);
+  border-bottom: 1px solid rgba(247, 244, 234, 0.08);
+  color: var(--color-text-inverse);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition);
+}
+
+.header--transparent {
+  background: transparent;
+  border-color: transparent;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+.header__link {
+  position: relative;
+  padding: 0.25rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: color var(--transition);
+}
+
+.header__link:hover,
+.header__link.active {
+  color: var(--color-primary);
+}
+
+.header__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.header__link:hover::after,
+.header__link.active::after {
+  transform: scaleX(1);
+}
+
+.header__cta {
+  min-height: 42px;
+  padding: 0.55rem 1.3rem;
+}
+
+.header__toggle {
+  display: none;
+  padding: 0.4rem;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 860px) {
+  .header__toggle {
+    display: inline-flex;
+  }
+
+  .header__nav {
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.5rem 1.25rem 1.5rem;
+    background: var(--color-dark);
+    border-bottom: 3px solid var(--color-primary);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    display: none;
+  }
+
+  .header--open .header__nav {
+    display: flex;
+  }
+
+  .header__link {
+    padding: 0.9rem 0;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(247, 244, 234, 0.12);
+  }
+
+  .header__link::after {
+    display: none;
+  }
+
+  .header__cta {
+    margin-top: 1.25rem;
+  }
+}

@@ -1,0 +1,296 @@
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: calc(var(--header-height) + 2rem);
+  overflow: hidden;
+  color: var(--color-text-inverse);
+  background:
+    radial-gradient(ellipse at 82% 88%, rgba(243, 146, 0, 0.28), transparent 55%),
+    radial-gradient(ellipse at 5% 0%, rgba(246, 224, 60, 0.07), transparent 50%),
+    var(--color-dark);
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__media picture {
+  display: block;
+  height: 100%;
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--position, 50% 50%);
+}
+
+/* Matches the portrait <source> media query in Hero.jsx. */
+@media (max-aspect-ratio: 4/5) {
+  .hero__image {
+    object-position: var(--position-portrait, var(--position, 50% 50%));
+  }
+}
+
+/* Darken the text column (clearing by ~68% so the food stays at full colour) and
+   a band along the bottom behind the info strip. */
+.hero--photo .hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(0deg, rgba(29, 29, 27, 0.92) 0%, rgba(29, 29, 27, 0.6) 12%, rgba(29, 29, 27, 0) 30%),
+    linear-gradient(
+      90deg,
+      rgba(29, 29, 27, 0.94) 0%,
+      rgba(29, 29, 27, 0.88) 30%,
+      rgba(29, 29, 27, 0.55) 44%,
+      rgba(29, 29, 27, 0.15) 58%,
+      rgba(29, 29, 27, 0) 68%
+    );
+}
+
+/* The outline button can sit over food, so give it its own dark backing. */
+.hero--photo .btn--outline-light {
+  border-color: rgba(247, 244, 234, 0.8);
+  background: rgba(29, 29, 27, 0.5);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.hero--photo .btn--outline-light:hover {
+  border-color: var(--color-text-inverse);
+  background: rgba(29, 29, 27, 0.7);
+}
+
+.hero__art {
+  position: absolute;
+  right: max(-4rem, calc((100vw - var(--container-width)) / 2 - 6rem));
+  bottom: 0;
+  height: 92%;
+  width: auto;
+}
+
+.hero__content {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.hero__eyebrow {
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.hero__title {
+  margin-bottom: 1.5rem;
+  font-size: clamp(3.2rem, 9vw, 6.75rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* "The" on its own line, then the brand name kept whole: "The / Lemon Grass". */
+.hero__title-keep {
+  display: block;
+  white-space: nowrap;
+}
+
+.hero__subtitle {
+  max-width: 32rem;
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  color: rgba(247, 244, 234, 0.82);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.hero__info {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2.5rem;
+  margin: 0;
+  padding: 1.5rem 0 4rem;
+  list-style: none;
+  border-top: 1px solid rgba(247, 244, 234, 0.16);
+  font-size: 0.95rem;
+  color: rgba(247, 244, 234, 0.82);
+}
+
+.hero__info li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.hero__info svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.hero__info a:hover {
+  color: var(--color-primary);
+}
+
+@media (max-width: 860px) {
+  .hero__info {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    column-gap: 2rem;
+  }
+
+  .hero__info li:first-child {
+    grid-column: 1 / -1;
+  }
+
+  /* Text spans the full width on phones, so darken the whole photo, most at the bottom. */
+  .hero--photo .hero__media::after {
+    background: linear-gradient(180deg, rgba(29, 29, 27, 0.6) 0%, rgba(29, 29, 27, 0.78) 55%, rgba(29, 29, 27, 0.92) 100%);
+  }
+
+  .hero__art {
+    right: -30%;
+    height: 70%;
+    opacity: 0.45;
+  }
+}
+
+/* Tall screens use the portrait crop, whose top half is plain black: put the text
+   there and leave a clear window over the food, with a dark band for the info strip
+   at the bottom. px stops because the text is pinned top and the strip bottom. */
+@media (max-aspect-ratio: 4/5) {
+  .hero__content {
+    justify-content: flex-start;
+  }
+
+  .hero--photo .hero__media::after {
+    background: linear-gradient(
+      180deg,
+      rgba(29, 29, 27, 0.6) 0,
+      rgba(29, 29, 27, 0.6) 400px,
+      rgba(29, 29, 27, 0) 520px,
+      rgba(29, 29, 27, 0) calc(100% - 240px),
+      rgba(29, 29, 27, 0.82) calc(100% - 165px),
+      rgba(29, 29, 27, 0.92) 100%
+    );
+  }
+
+  /* On small phones the bun can rise under the subtitle's last line. */
+  .hero--photo .hero__subtitle {
+    text-shadow: 0 1px 12px rgba(29, 29, 27, 0.9);
+  }
+}
+
+.hero__nowrap {
+  white-space: nowrap;
+}
+
+.hero__area-short {
+  display: none;
+}
+
+/* Screens wider than the photo: rather than stretching it across the full width
+   (which slides the burger under the headline), anchor it right and fade its left
+   edge into the charcoal background. */
+@media (min-aspect-ratio: 3/2) and (min-width: 1200px) {
+  .hero__media picture {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* Lift the text block so the subtitle clears the fries. */
+  .hero__content {
+    padding-bottom: 8rem;
+  }
+
+  .hero__image {
+    width: min(100%, 140svh);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%);
+    mask-image: linear-gradient(90deg, transparent, #000 18%);
+  }
+}
+
+/* Phones: tighter text stack so the buttons end above the burger, and the photo
+   box starts lower (its plain black top fades into the background) so the bun
+   lands just below the buttons at any phone height. */
+@media (max-width: 600px) and (max-aspect-ratio: 4/5) {
+  .hero {
+    min-height: max(100svh, 740px);
+    padding-top: calc(var(--header-height) + 0.5rem);
+  }
+
+  .hero__content {
+    padding-top: 0.75rem;
+  }
+
+  .hero__title {
+    margin-bottom: 1rem;
+  }
+
+  .hero__actions {
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+  }
+
+  .hero__actions .btn {
+    flex: 1 1 auto;
+    padding-inline: 1rem;
+    white-space: nowrap;
+  }
+
+  .hero__media {
+    top: max(0px, calc(910px - 100%));
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 120px);
+    mask-image: linear-gradient(180deg, transparent 0, #000 120px);
+  }
+
+  .hero--photo .hero__media::after {
+    background: linear-gradient(
+      180deg,
+      rgba(29, 29, 27, 0.6) 0,
+      rgba(29, 29, 27, 0.6) 38%,
+      rgba(29, 29, 27, 0) 47%,
+      rgba(29, 29, 27, 0) calc(100% - 240px),
+      rgba(29, 29, 27, 0.82) calc(100% - 165px),
+      rgba(29, 29, 27, 0.92) 100%
+    );
+  }
+
+  /* One item per line, with the short area name, so nothing splits mid-value. */
+  .hero__info {
+    grid-template-columns: 1fr;
+    row-gap: 0.5rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero__info li:first-child {
+    grid-column: auto;
+  }
+
+  .hero__area-full {
+    display: none;
+  }
+
+  .hero__area-short {
+    display: inline;
+  }
+}

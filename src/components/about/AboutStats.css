@@ -1,0 +1,52 @@
+.stats {
+  position: relative;
+  padding: clamp(5rem, 9vw, 6.5rem) 0;
+  background: var(--color-dark);
+  color: var(--color-text-inverse);
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid rgba(243, 146, 0, 0.5);
+}
+
+.stat__value {
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  line-height: 1;
+  color: var(--color-primary);
+}
+
+.stat__label {
+  max-width: 14rem;
+  text-wrap: balance;
+  font-size: 0.95rem;
+  color: rgba(247, 244, 234, 0.78);
+}
+
+/* Tablets keep four across, just tighter. */
+@media (max-width: 860px) {
+  .stats__grid {
+    gap: 1.25rem;
+  }
+
+  .stat {
+    padding-left: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 2.5rem;
+  }
+}

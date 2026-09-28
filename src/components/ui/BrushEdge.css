@@ -1,0 +1,25 @@
+.brush-edge {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  pointer-events: none;
+}
+
+.brush-edge--bottom {
+  bottom: -1px;
+}
+
+/* Rotated rather than mirrored, so a band's top and bottom edges don't line up. */
+.brush-edge--top {
+  top: -1px;
+  transform: rotate(180deg);
+}
+
+.brush-edge--bottom.brush-edge--flip {
+  transform: scaleX(-1);
+}
+
+.brush-edge--top.brush-edge--flip {
+  transform: scaleY(-1);
+}

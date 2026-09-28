@@ -1,0 +1,330 @@
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: stretch;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.contact__details {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+}
+
+/* ---- Cards ---- */
+.contact-card {
+  padding: 1.6rem 1.75rem 1.8rem;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+}
+
+.contact-card__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.contact-card__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-dark);
+  color: var(--color-accent);
+}
+
+.contact-card__title {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.contact-card__note {
+  margin: 0 0 0.5rem;
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+}
+
+/* Phone numbers as clear, comfortably sized tap rows. */
+.contact-card__phones {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-card__phones li + li {
+  border-top: 1px solid rgba(29, 29, 27, 0.08);
+}
+
+.contact-phone {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 52px;
+}
+
+.contact-phone__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-dark);
+}
+
+.contact-phone__number {
+  flex: 1;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  white-space: nowrap;
+}
+
+.contact-phone__arrow {
+  flex-shrink: 0;
+  opacity: 0.4;
+  transition:
+    transform var(--transition),
+    opacity var(--transition);
+}
+
+.contact-phone:hover .contact-phone__number {
+  color: var(--color-primary-text);
+}
+
+.contact-phone:hover .contact-phone__arrow {
+  opacity: 1;
+  transform: translateX(3px);
+}
+
+.contact-card__email,
+.contact-card__socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+  font-weight: 600;
+}
+
+.contact-card__email:hover,
+.contact-card__socials a:hover {
+  color: var(--color-primary-text);
+}
+
+.contact-card__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-card__address {
+  margin-bottom: 1.25rem;
+  font-style: normal;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* ---- Opening hours ---- */
+.contact-hours {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-hours__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.5rem;
+  color: var(--color-text-muted);
+}
+
+.contact-hours__row.is-today {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.contact-hours__days,
+.contact-hours__time {
+  white-space: nowrap;
+}
+
+.contact-hours__days-short {
+  display: none;
+}
+
+.contact-hours__value {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.contact-hours__dots {
+  flex: 1;
+  min-width: 1rem;
+  border-bottom: 2px dotted rgba(29, 29, 27, 0.2);
+}
+
+.contact-hours__today {
+  margin-left: 0.4rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-dark);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  vertical-align: 0.1em;
+}
+
+/* ---- Map ---- */
+.contact-map {
+  position: relative;
+  display: flex;
+  min-height: 32rem;
+  padding: 0 1.5rem 1.5rem 0;
+}
+
+/* Offset orange frame behind the map, as on the home page's story photo. */
+.contact-map::before {
+  content: '';
+  position: absolute;
+  inset: 1.5rem 0 0 1.5rem;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius);
+}
+
+.contact-map__frame {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-bg-alt);
+  box-shadow: var(--shadow);
+}
+
+.contact-map__iframe {
+  display: block;
+  flex: 1;
+  width: 100%;
+  min-height: 26rem;
+  border: 0;
+  filter: saturate(0.85) sepia(0.08);
+}
+
+/* Label strip under the map: name and area on the left, link on the right. */
+.contact-map__label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--color-dark);
+  color: var(--color-text-inverse);
+}
+
+.contact-map__name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+}
+
+.contact-map__place {
+  font-size: 0.88rem;
+  color: rgba(247, 244, 234, 0.75);
+}
+
+.contact-map__open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: auto;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.contact-map__label:hover .contact-map__open svg {
+  transform: translateX(3px);
+}
+
+.contact-map__open svg {
+  transition: transform var(--transition);
+}
+
+/* Narrow laptops: the cards column is at its narrowest, so use short day names. */
+@media (min-width: 901px) and (max-width: 1240px) {
+  .contact-hours__days-long {
+    display: none;
+  }
+
+  .contact-hours__days-short {
+    display: inline;
+  }
+}
+
+/* Tablets: map below; Call and Find side by side with the hours underneath. */
+@media (max-width: 900px) {
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-map {
+    min-height: 0;
+    padding: 0 0.75rem 0.75rem 0;
+  }
+
+  .contact-map::before {
+    inset: 0.75rem 0 0 0.75rem;
+  }
+
+  .contact-map__iframe {
+    min-height: 22rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .contact__details {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .contact-card--hours {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Phones: short day names so each hours row fits one line; a slimmer map frame. */
+@media (max-width: 480px) {
+  .contact-card {
+    padding: 1.35rem 1.25rem 1.5rem;
+  }
+
+  .contact-card__icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .contact-hours__days-long {
+    display: none;
+  }
+
+  .contact-hours__days-short {
+    display: inline;
+  }
+
+  .contact-map__iframe {
+    min-height: 20rem;
+  }
+}
