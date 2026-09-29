@@ -20,6 +20,7 @@
 }
 
 .stat__value {
+  font-variant-numeric: tabular-nums; /* digits keep their width while counting */
   font-family: var(--font-heading);
   font-size: clamp(2.8rem, 5vw, 4rem);
   line-height: 1;

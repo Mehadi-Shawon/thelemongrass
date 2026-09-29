@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
+import useScrollReveal from '../../hooks/useScrollReveal.js'
 import Header from './Header.jsx'
 import Footer from './Footer.jsx'
 
@@ -15,6 +16,9 @@ export default function Layout() {
     if (target) target.scrollIntoView({ behavior: 'instant' })
     else window.scrollTo({ top: 0, behavior: 'instant' })
   }, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Elements marked data-reveal ease in as they scroll into view, on every page.
+  useScrollReveal()
 
   return (
     <div className={`layout ${overlay ? 'layout--overlay' : ''}`.trim()}>

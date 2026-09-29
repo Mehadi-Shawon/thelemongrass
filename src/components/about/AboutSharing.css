@@ -110,3 +110,20 @@
     flex: 1 1 100%;
   }
 }
+
+/* The photo fades in and settles from a slight zoom (the box itself doesn't move). */
+@media (prefers-reduced-motion: no-preference) {
+  .sharing__media[data-reveal='photo'] {
+    transform: none;
+    transition: opacity 1.2s ease;
+  }
+
+  .sharing__media[data-reveal='photo'] .photo {
+    transform: scale(1.1);
+    transition: transform 1.8s var(--ease-out);
+  }
+
+  .sharing__media[data-revealed] .photo {
+    transform: none;
+  }
+}

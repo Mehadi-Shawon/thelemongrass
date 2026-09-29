@@ -34,3 +34,31 @@
   font-size: 1.05rem;
   color: rgba(247, 244, 234, 0.8);
 }
+
+/* Entrance on page load: eyebrow, title and subtitle rise in one after another. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes page-hero-rise {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 22px, 0);
+    }
+  }
+
+  .page-hero__eyebrow,
+  .page-hero__title,
+  .page-hero__text {
+    animation: page-hero-rise 0.85s var(--ease-out) both;
+  }
+
+  .page-hero__eyebrow {
+    animation-delay: 0.1s;
+  }
+
+  .page-hero__title {
+    animation-delay: 0.22s;
+  }
+
+  .page-hero__text {
+    animation-delay: 0.38s;
+  }
+}

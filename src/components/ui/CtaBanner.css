@@ -238,3 +238,16 @@
     animation: none;
   }
 }
+
+/* The marker stroke sweeps in from the left once the heading is revealed. */
+@media (prefers-reduced-motion: no-preference) {
+  .cta__content[data-reveal] .cta__highlight::before {
+    transform: rotate(-1.5deg) skewX(-10deg) scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.7s var(--ease-out) 0.55s;
+  }
+
+  .cta__content[data-revealed] .cta__highlight::before {
+    transform: rotate(-1.5deg) skewX(-10deg) scaleX(1);
+  }
+}

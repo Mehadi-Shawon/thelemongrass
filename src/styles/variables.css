@@ -37,4 +37,5 @@
   --shadow: 0 10px 30px rgba(29, 29, 27, 0.08);
   --section-space: clamp(4rem, 9vw, 7rem);
   --transition: 0.25s ease;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1); /* for entrances and reveals */
 }

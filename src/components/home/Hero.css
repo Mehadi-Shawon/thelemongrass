@@ -104,8 +104,12 @@
 }
 
 /* "The" on its own line, then the brand name kept whole: "The / Lemon Grass". */
-.hero__title-keep {
+/* Each title line is a block so it can animate in on its own. */
+.hero__title-line {
   display: block;
+}
+
+.hero__title-keep {
   white-space: nowrap;
 }
 
@@ -294,3 +298,63 @@
     display: inline;
   }
 }
+
+/* ---- Entrance on page load ----
+   The photo settles from a slight zoom while the text rises in piece by piece.
+   Skipped entirely for visitors who prefer reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes hero-settle {
+    from {
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 26px, 0);
+    }
+  }
+
+  @keyframes hero-fade {
+    from {
+      opacity: 0;
+    }
+  }
+
+  .hero__image {
+    animation: hero-settle 2.4s var(--ease-out) both;
+  }
+
+  .hero__eyebrow,
+  .hero__title-line,
+  .hero__subtitle,
+  .hero__actions {
+    animation: hero-rise 0.9s var(--ease-out) both;
+  }
+
+  .hero__eyebrow {
+    animation-delay: 0.15s;
+  }
+
+  .hero__title-line:first-child {
+    animation-delay: 0.28s;
+  }
+
+  .hero__title-keep {
+    animation-delay: 0.4s;
+  }
+
+  .hero__subtitle {
+    animation-delay: 0.58s;
+  }
+
+  .hero__actions {
+    animation-delay: 0.72s;
+  }
+
+  .hero__info {
+    animation: hero-fade 1s ease 0.95s both;
+  }
+}
+

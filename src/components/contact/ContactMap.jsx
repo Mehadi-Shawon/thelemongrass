@@ -6,7 +6,7 @@ import Icon from '../ui/Icon.jsx'
 // (kept off the map itself so it never hides the pin or Google's controls).
 export default function ContactMap() {
   return (
-    <div className="contact-map">
+    <div className="contact-map" data-reveal="right" style={{ '--reveal-delay': '150ms' }}>
       <div className="contact-map__frame">
         <iframe
           className="contact-map__iframe"

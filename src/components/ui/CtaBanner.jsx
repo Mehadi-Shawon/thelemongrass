@@ -59,7 +59,7 @@ export default function CtaBanner({ edgeAbove = 'var(--color-bg)' }) {
       <LemonSlice className="cta__art" />
 
       <div className="container cta__inner">
-        <div className="cta__content">
+        <div className="cta__content" data-reveal>
           {cta.eyebrow && <span className="cta__eyebrow">{cta.eyebrow}</span>}
           <h2 className="cta__title">
             <Title text={cta.title} highlight={cta.highlight} />
@@ -67,7 +67,7 @@ export default function CtaBanner({ edgeAbove = 'var(--color-bg)' }) {
           <p className="cta__text">{cta.text}</p>
         </div>
 
-        <div className="cta__actions">
+        <div className="cta__actions" data-reveal style={{ '--reveal-delay': '150ms' }}>
           <ActionTile
             href={telHref(mainPhone)}
             icon="phone"

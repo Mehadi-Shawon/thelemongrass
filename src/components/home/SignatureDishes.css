@@ -4,8 +4,14 @@
   gap: 1.5rem;
 }
 
+/* Reveal wrapper (the grid item); the card fills it so the row stays equal height. */
+.dish-reveal {
+  display: flex;
+}
+
 .dish {
   display: flex;
+  flex: 1;
   flex-direction: column;
   overflow: hidden;
   border-radius: var(--radius);

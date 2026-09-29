@@ -49,7 +49,8 @@ export default function Hero() {
       <div className="container hero__content">
         <span className="hero__eyebrow">{hero.eyebrow}</span>
         <h1 className="hero__title">
-          {firstWord} <span className="hero__title-keep">{restOfTitle.join(' ')}</span>
+          <span className="hero__title-line">{firstWord}</span>{' '}
+          <span className="hero__title-line hero__title-keep">{restOfTitle.join(' ')}</span>
         </h1>
         <p className="hero__subtitle">{hero.subtitle}</p>
         <div className="hero__actions">

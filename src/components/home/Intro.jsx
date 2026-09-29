@@ -9,11 +9,11 @@ export default function Intro() {
   return (
     <section className="section">
       <div className="container intro">
-        <div className="intro__media">
+        <div className="intro__media" data-reveal="left">
           <Photo src={intro.image} alt={intro.imageAlt} position={intro.imagePosition} label="Restaurant photo" />
         </div>
 
-        <div className="intro__content">
+        <div className="intro__content" data-reveal style={{ '--reveal-delay': '150ms' }}>
           <SectionHeading eyebrow={intro.eyebrow} title={intro.title} />
           {intro.body.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>

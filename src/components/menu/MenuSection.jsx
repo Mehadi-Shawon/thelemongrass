@@ -13,7 +13,7 @@ export default function MenuSection({ section }) {
 
   return (
     <section id={section.id} className="menu-section">
-      <header className={`menu-section__header ${photo ? 'menu-section__header--photo' : ''}`.trim()}>
+      <header className={`menu-section__header ${photo ? 'menu-section__header--photo' : ''}`.trim()} data-reveal>
         <div className="menu-section__heading">
           <h2 className="menu-section__title">{section.name}</h2>
           {section.note && <p className="menu-section__note">{section.note}</p>}
@@ -25,7 +25,7 @@ export default function MenuSection({ section }) {
         )}
       </header>
 
-      <div className="menu-section__columns">
+      <div className="menu-section__columns" data-reveal style={{ '--reveal-delay': '120ms' }}>
         {columns.map((items, i) => (
           <div key={i} className="menu-section__column">
             {labels && (

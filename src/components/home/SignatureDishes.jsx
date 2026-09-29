@@ -30,29 +30,38 @@ export default function SignatureDishes() {
           title="Signature Dishes"
           text="A few favourites to start with — there is plenty more on the menu."
           align="center"
+          reveal
         />
 
         <div className="dishes">
-          {dishes.map((dish) => (
-            <article key={dish.id} className="dish">
-              <div className="dish__media">
-                <Photo
-                  src={dish.image}
-                  alt={dish.imageAlt || dish.name}
-                  position={dish.imagePosition}
-                  label="Dish photo"
-                />
-              </div>
-              <div className="dish__body">
-                <span className="dish__category">{dish.section.name}</span>
-                <h3 className="dish__name">{dish.name}</h3>
-                <span className="dish__price">{priceText(dish.prices)}</span>
-              </div>
-            </article>
+          {dishes.map((dish, i) => (
+            // The wrapper carries the reveal, so the card's own hover lift is untouched.
+            <div
+              key={dish.id}
+              className="dish-reveal"
+              data-reveal
+              style={{ '--reveal-delay': `${i * 110}ms` }}
+            >
+              <article className="dish">
+                <div className="dish__media">
+                  <Photo
+                    src={dish.image}
+                    alt={dish.imageAlt || dish.name}
+                    position={dish.imagePosition}
+                    label="Dish photo"
+                  />
+                </div>
+                <div className="dish__body">
+                  <span className="dish__category">{dish.section.name}</span>
+                  <h3 className="dish__name">{dish.name}</h3>
+                  <span className="dish__price">{priceText(dish.prices)}</span>
+                </div>
+              </article>
+            </div>
           ))}
         </div>
 
-        <div className="dishes__action">
+        <div className="dishes__action" data-reveal style={{ '--reveal-delay': '200ms' }}>
           <Button to="/menu" variant="dark">
             See the Full Menu
           </Button>

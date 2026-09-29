@@ -97,6 +97,9 @@ button {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  /* Elements that slide in from the side mustn't cause sideways scrolling. 'clip'
+     (unlike 'hidden') keeps sticky elements like the menu's category bar working. */
+  overflow-x: clip;
 }
 
 .layout__main {
@@ -126,3 +129,37 @@ button {
 [id] {
   scroll-margin-top: var(--header-height);
 }
+
+/* ---- Scroll reveal ----
+   Elements marked data-reveal ease in when they first scroll into view; the
+   useScrollReveal hook sets data-revealed. Values: up (default), left, right, zoom.
+   Stagger with style={{ '--reveal-delay': '120ms' }}. Visitors who prefer reduced
+   motion never get the hidden starting state, so nothing waits on an animation. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+    transition:
+      opacity 0.8s var(--ease-out),
+      transform 0.8s var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  [data-reveal='left'] {
+    transform: translate3d(-40px, 0, 0);
+  }
+
+  [data-reveal='right'] {
+    transform: translate3d(40px, 0, 0);
+  }
+
+  [data-reveal='zoom'] {
+    transform: scale(0.94);
+  }
+
+  [data-reveal][data-revealed] {
+    opacity: 1;
+    transform: none;
+  }
+}
+

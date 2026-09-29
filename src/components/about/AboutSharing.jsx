@@ -8,12 +8,12 @@ import './AboutSharing.css'
 export default function AboutSharing() {
   return (
     <section className={`sharing ${sharing.image ? 'sharing--photo' : ''}`.trim()}>
-      <div className="sharing__media">
+      <div className="sharing__media" data-reveal="photo">
         <Photo src={sharing.image} alt={sharing.imageAlt} position={sharing.imagePosition} label="Sharing photo" />
       </div>
       <BrushEdge position="top" color="var(--color-bg)" flip />
 
-      <div className="container sharing__content">
+      <div className="container sharing__content" data-reveal style={{ '--reveal-delay': '150ms' }}>
         <span className="sharing__eyebrow">{sharing.eyebrow}</span>
         <h2 className="sharing__title">{sharing.title}</h2>
         <p className="sharing__text">{sharing.text}</p>

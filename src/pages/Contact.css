@@ -190,17 +190,18 @@
 
 /* ---- Map ---- */
 .contact-map {
+  --frame-offset: 1.5rem;
   position: relative;
   display: flex;
   min-height: 32rem;
-  padding: 0 1.5rem 1.5rem 0;
+  padding: 0 var(--frame-offset) var(--frame-offset) 0;
 }
 
 /* Offset orange frame behind the map, as on the home page's story photo. */
 .contact-map::before {
   content: '';
   position: absolute;
-  inset: 1.5rem 0 0 1.5rem;
+  inset: var(--frame-offset) 0 0 var(--frame-offset);
   border: 2px solid var(--color-primary);
   border-radius: var(--radius);
 }
@@ -282,12 +283,8 @@
   }
 
   .contact-map {
+    --frame-offset: 0.75rem;
     min-height: 0;
-    padding: 0 0.75rem 0.75rem 0;
-  }
-
-  .contact-map::before {
-    inset: 0.75rem 0 0 0.75rem;
   }
 
   .contact-map__iframe {
@@ -326,5 +323,35 @@
 
   .contact-map__iframe {
     min-height: 20rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* The orange frame starts tucked behind the map and slides out once it's revealed. */
+  .contact-map[data-reveal]::before {
+    opacity: 0;
+    transform: translate(calc(var(--frame-offset) * -1), calc(var(--frame-offset) * -1));
+    transition:
+      opacity 0.6s ease 0.5s,
+      transform 0.9s var(--ease-out) 0.5s;
+  }
+
+  .contact-map[data-revealed]::before {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Today's tag pops in once its card has arrived. */
+  @keyframes today-pop {
+    from {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+  }
+
+  .contact-card[data-revealed] .contact-hours__today {
+    display: inline-block;
+    animation: today-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    animation-delay: calc(var(--reveal-delay, 0ms) + 0.55s);
   }
 }

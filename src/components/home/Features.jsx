@@ -8,8 +8,13 @@ export default function Features() {
     <section className="features">
       <BrushEdge position="top" color="var(--color-bg-alt)" />
       <div className="container features__grid">
-        {features.map((feature) => (
-          <div key={feature.title} className="feature">
+        {features.map((feature, i) => (
+          <div
+            key={feature.title}
+            className="feature"
+            data-reveal
+            style={{ '--reveal-delay': `${i * 140}ms` }}
+          >
             <span className="feature__icon">
               <Icon name={feature.icon} size={28} />
             </span>

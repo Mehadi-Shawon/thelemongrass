@@ -35,7 +35,7 @@ export default function ContactDetails() {
         )}
       </ContactCard>
 
-      <ContactCard icon="pin" title="Find us">
+      <ContactCard icon="pin" title="Find us" revealDelay="120ms">
         <address className="contact-card__address">
           {street}
           <br />
@@ -48,7 +48,7 @@ export default function ContactDetails() {
         </Button>
       </ContactCard>
 
-      <ContactCard icon="clock" title="Opening hours" className="contact-card--hours">
+      <ContactCard icon="clock" title="Opening hours" className="contact-card--hours" revealDelay="240ms">
         <ul className="contact-hours">
           {site.hours.map((row) => {
             const isToday = row.weekdays?.includes(today)
@@ -71,7 +71,7 @@ export default function ContactDetails() {
       </ContactCard>
 
       {socials.length > 0 && (
-        <ContactCard icon="users" title="Follow us">
+        <ContactCard icon="users" title="Follow us" revealDelay="360ms">
           <ul className="contact-card__socials">
             {socials.map(([name, url]) => (
               <li key={name}>

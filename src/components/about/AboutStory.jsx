@@ -11,7 +11,7 @@ export default function AboutStory() {
         {/* Overlapping two-photo collage with a small lemon slice tucked behind. */}
         <div className="about-story__collage">
           <LemonSlice className="about-story__lemon" />
-          <div className="about-story__main">
+          <div className="about-story__main" data-reveal="left">
             <Photo
               src={story.mainImage.image}
               alt={story.mainImage.alt}
@@ -19,7 +19,7 @@ export default function AboutStory() {
               label="Ingredients photo"
             />
           </div>
-          <div className="about-story__inset">
+          <div className="about-story__inset" data-reveal="zoom" style={{ '--reveal-delay': '350ms' }}>
             <Photo
               src={story.insetImage.image}
               alt={story.insetImage.alt}
@@ -29,7 +29,7 @@ export default function AboutStory() {
           </div>
         </div>
 
-        <div className="about-story__content">
+        <div className="about-story__content" data-reveal style={{ '--reveal-delay': '150ms' }}>
           <SectionHeading eyebrow={story.eyebrow} title={story.title} />
           {story.body.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>

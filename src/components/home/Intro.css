@@ -47,3 +47,19 @@
     aspect-ratio: 4 / 3;
   }
 }
+
+/* The orange frame starts tucked behind the photo and slides out once it's revealed. */
+@media (prefers-reduced-motion: no-preference) {
+  .intro__media[data-reveal]::before {
+    opacity: 0;
+    transform: translate(-1.5rem, -1.5rem);
+    transition:
+      opacity 0.6s ease 0.45s,
+      transform 0.9s var(--ease-out) 0.45s;
+  }
+
+  .intro__media[data-revealed]::before {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -11,7 +11,7 @@ export default function VisitUs() {
   return (
     <section id="visit" className="section">
       <div className="container visit">
-        <div>
+        <div data-reveal>
           <SectionHeading
             eyebrow="Visit Us"
             title="Come hungry, leave happy"
@@ -50,7 +50,7 @@ export default function VisitUs() {
           </Button>
         </div>
 
-        <div className="hours">
+        <div className="hours" data-reveal="right" style={{ '--reveal-delay': '150ms' }}>
           <div className="hours__header">
             <Icon name="clock" size={26} />
             <h3>Opening Hours</h3>
